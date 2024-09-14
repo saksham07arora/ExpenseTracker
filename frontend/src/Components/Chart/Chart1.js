@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { useGlobalContext } from '../../context/globalContext'
 
+import styled from 'styled-components'
+
 const ExpenseChart = () => {
     const { getCategoryTotals } = useGlobalContext();
     const [chartData, setChartData] = useState(null); // Changed to null initially
@@ -57,11 +59,29 @@ const ExpenseChart = () => {
     }
 
     return (
-        <div>
+        <ChartStyled>
             <h3>Expense Distribution</h3>
             <Pie data={chartData} />
-        </div>
+        </ChartStyled>
     );
 };
+
+const ChartStyled = styled.div`
+    background: #FCF6F9;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    border-radius: 20px;
+    height: 400px;
+    width: 45%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 700px){
+        width: 100%; 
+        margin-top: 10px;
+    }
+`;
 
 export default ExpenseChart;

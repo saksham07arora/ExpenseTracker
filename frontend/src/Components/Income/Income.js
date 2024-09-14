@@ -46,6 +46,7 @@ function Income() {
 const IncomeStyled = styled.div`
     display: flex;
     overflow: auto;
+    margin-top: -20px;
     .total-income{
         display: flex;
         justify-content: center;
@@ -56,10 +57,10 @@ const IncomeStyled = styled.div`
         border-radius: 20px;
         padding: 1rem;
         margin: 1rem 0;
-        font-size: 2rem;
+        font-size: 1.5rem;
         gap: .5rem;
         span{
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--color-green);
         }
@@ -69,6 +70,9 @@ const IncomeStyled = styled.div`
         gap: 2rem;
         .incomes{
             flex: 1;
+        }
+        @media (max-width: 900px) {
+            flex-direction: column;
         }
     }
 `;

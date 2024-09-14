@@ -69,7 +69,7 @@ function Form() {
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
+                    <option value=""  disabled >Select Category</option>
                     <option value="salary">Salary</option>
                     <option value="freelancing">Freelancing</option>
                     <option value="investments">Investiments</option>
@@ -81,7 +81,7 @@ function Form() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" value={description} placeholder='Add A Reference' id="description" rows="3" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
                 <Button 
@@ -101,7 +101,9 @@ function Form() {
 const FormStyled = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+    border: 2px solid white;
+    padding: 15px;
     input, textarea, select{
         font-family: inherit;
         font-size: inherit;
@@ -111,7 +113,6 @@ const FormStyled = styled.form`
         border-radius: 5px;
         border: 2px solid #fff;
         background: transparent;
-        resize: none;
         box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
         color: rgba(34, 34, 96, 0.9);
         &::placeholder{
@@ -119,7 +120,7 @@ const FormStyled = styled.form`
         }
     }
     .input-control{
-        input{
+        input, textarea{
             width: 100%;
         }
     }
@@ -132,10 +133,14 @@ const FormStyled = styled.form`
             &:focus, &:active{
                 color: rgba(34, 34, 96, 1);
             }
+            width:100%;
         }
     }
 
     .submit-btn{
+        display: flex;
+        justify-content:center;
+        align-items:center;
         button{
             box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
             &:hover{

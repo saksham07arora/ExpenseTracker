@@ -180,10 +180,15 @@ const FinancialRecordsStyled = styled.div`
     }
 
     .table-container {
-        overflow-x: auto;
-        
+        overflow-x: none;
+        display: flex;
+        flex: wrap;
+        @media(max-width: 600px){
+            overflow-x: auto;
+        }
+        justify-content: center;
         table {
-            width: 100%;
+            width: 90%;
             border-collapse: collapse;
             
             th, td {

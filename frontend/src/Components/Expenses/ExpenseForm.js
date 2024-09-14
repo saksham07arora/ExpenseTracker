@@ -81,7 +81,7 @@ function ExpenseForm() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" value={description} placeholder='Add A Reference' id="description"  rows="3" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
                 <Button 
@@ -101,7 +101,9 @@ function ExpenseForm() {
 const ExpenseFormStyled = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+    border: 2px solid white;
+    padding: 15px;
     input, textarea, select{
         font-family: inherit;
         font-size: inherit;
@@ -119,7 +121,7 @@ const ExpenseFormStyled = styled.form`
         }
     }
     .input-control{
-        input{
+        input, textarea{
             width: 100%;
         }
     }
@@ -132,10 +134,14 @@ const ExpenseFormStyled = styled.form`
             &:focus, &:active{
                 color: rgba(34, 34, 96, 1);
             }
+            width:100%;
         }
     }
 
     .submit-btn{
+        display: flex;
+        justify-content:center;
+        align-items:center;
         button{
             box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
             &:hover{

@@ -75,7 +75,7 @@ function IncomeItem({
                     <div className="text">
                         <p>₹ {amount}</p>
                         <p>{calender} {dateFormat(date)}</p>
-                        <p>
+                        <p className='hide'>
                             {comment}
                             {description}
                         </p>
@@ -85,7 +85,7 @@ function IncomeItem({
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
-                            bg={'var(--primary-color'}
+                            bg={'red'}
                             color={'#fff'}
                             iColor={'#fff'}
                             hColor={'var(--color-green)'}
@@ -99,6 +99,9 @@ function IncomeItem({
 }
 
 const IncomeItemStyled = styled.div`
+    @media (max-width: 700px){
+        padding: 5px;
+    }
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -154,6 +157,11 @@ const IncomeItemStyled = styled.div`
                 display: flex;
                 align-items: center;
                 gap: 1.5rem;
+                .hide{
+                    @media (max-width: 700px){
+                        display: none;
+                    }
+                }
                 p{
                     display: flex;
                     align-items: center;

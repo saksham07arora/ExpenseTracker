@@ -75,10 +75,17 @@ const ChartStyled = styled.div`
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 20px;
-    height: 400px; /* Adjust the height */
-    width: 50%; 
+    height: 400px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 700px){
+        width: 100%; 
+        margin-top: -20px;
+    }
 `;
 
 export default Chart

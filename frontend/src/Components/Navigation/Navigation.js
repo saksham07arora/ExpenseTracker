@@ -10,7 +10,7 @@ function Navigation({active, setActive}) {
         <NavStyled>
             <div className="user-con">
                 <img src={avatar} alt="" />
-                <div className="text">
+                <div className="text hide">
                     <h2>Mike</h2>
                     <p>Your Money</p>
                 </div>
@@ -20,16 +20,16 @@ function Navigation({active, setActive}) {
                     return <li
                         key={item.id}
                         onClick={() => setActive(item.id)}
-                        className={active === item.id ? 'active': ''}
+                        className={active === item.id ? 'active hide': 'hide'}
                     >
                         {item.icon}
-                        <span>{item.title}</span>
+                        <span className='hide'>{item.title}</span>
                     </li>
                 })}
             </ul>
             <div className="bottom-nav">
                 <li>
-                    {signout} Sign Out
+                    <span className='signout'>{signout}</span> <span className='hide'>Sign Out</span>
                 </li>
             </div>
         </NavStyled>
@@ -37,8 +37,17 @@ function Navigation({active, setActive}) {
 }
 
 const NavStyled = styled.nav`
+    .bottom-nav{
+        li{
+            .signout{
+                @media (max-width: 1024px){
+                    font-size: 40px;
+                } 
+            }   
+        }
+    }
     padding: 2rem 1.5rem;
-    width: 374px;
+    width: fit-content;
     height: 100%;
     background: rgba(252, 246, 249, 0.78);
     border: 3px solid #FFFFFF;
@@ -48,6 +57,23 @@ const NavStyled = styled.nav`
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
+    @media (max-width:600px){
+        flex-direction: row;
+        flex: wrap;
+        width: 100%;
+        padding: 0px;
+    }
+    .hide{
+        @media (min-width: 601px) and (max-width: 1024px){
+            display: none;
+        }       
+    }
+    @media (max-width: 600px){
+        height: fit-content;
+        .hide{
+            display: none;
+        }    
+    }
     .user-con{
         height: 100px;
         display: flex;
@@ -88,9 +114,17 @@ const NavStyled = styled.nav`
             position: relative;
             i{
                 color: rgba(34, 34, 96, 0.6);
-                font-size: 1.4rem;
+                font-size: 2rem;
                 transition: all .4s ease-in-out;
+                
+                @media (min-width: 601px) and (max-width: 1024px){
+                    font-size: 3.5rem;
+                    display:flex;
+                } 
             }
+        }
+        @media (max-width: 600px){
+            flex-direction: row;
         }
     }
 
@@ -109,6 +143,7 @@ const NavStyled = styled.nav`
             background: #222260;
             border-radius: 0 10px 10px 0;
         }
+        
     }
 `;
 

@@ -45,13 +45,13 @@ function Dashboard() {
                         <History />
                         <h2 className="salary-title">Min <span>Salary</span> Max</h2>
                         <div className="salary-item">
-                            <p>₹{Math.min(...incomes.map(item => item.amount))}</p>
-                            <p>₹{Math.max(...incomes.map(item => item.amount))}</p>
+                            <p>₹{Math.min(...incomes.map(item => item.amount)) !== Infinity ? Math.min(...incomes.map(item => item.amount)) : 0}</p>
+                            <p>₹{Math.max(...incomes.map(item => item.amount)) !== -Infinity ? Math.max(...incomes.map(item => item.amount)) : 0}</p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span> Max</h2>
                         <div className="salary-item">
-                            <p>₹{Math.min(...expenses.map(item => item.amount))}</p>
-                            <p>₹{Math.max(...expenses.map(item => item.amount))}</p>
+                        <p>₹{Math.min(...expenses.map(item => item.amount)) !== Infinity ? Math.min(...expenses.map(item => item.amount)) : 0}</p>
+                        <p>₹{Math.max(...expenses.map(item => item.amount)) !== -Infinity ? Math.max(...expenses.map(item => item.amount)) : 0}</p>
                         </div>
                     </div>
                 </div>
@@ -72,6 +72,14 @@ const DashboardStyled = styled.div`
             justify-content: space-between;
             margin-bottom: 2rem;
 
+
+            @media (max-width: 768px) {
+                display:flex;
+                flex-direction: column;
+            }
+            .expense{
+                color: red;
+            }    
             .income, .expense, .balance {
                 background: #FCF6F9;
                 border: 2px solid #FFFFFF;
@@ -83,14 +91,29 @@ const DashboardStyled = styled.div`
                 p {
                     font-size: 2.5rem;
                     font-weight: 700;
+                    @media(min-width: 760px){
+                        font-size: 2rem;
+                        padding: 2px;
+                    }
+                }
+                @media (min-width: 699px) {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+                @media (max-width: 700px) {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+                @media(min-width: 701px){
+                    margin-left: 1rem;
                 }
             }
             .balance p {
-                color: var(--color-green);
-                opacity: 0.6;
-                font-size: 3rem;
+                color: green;
             }
         }
+
+        
 
         .chart-con {
             grid-column: 1 / -1;
@@ -101,12 +124,17 @@ const DashboardStyled = styled.div`
                 display: flex;
                 width: 100%;
                 justify-content: space-around;
-                
+
+                @media (max-width: 700px) {
+                    display:flex;
+                    flex-direction: column;
+                }
                 .chart, .expense-chart {
-                    width: 45%; /* Adjust to reduce the size of the charts */
+                    width: 45%; 
                 }
             }
         }
+            
 
         .history-con {
             grid-column: 1 / -1;
@@ -138,7 +166,9 @@ const DashboardStyled = styled.div`
                 p {
                     font-weight: 600;
                     font-size: 1.6rem;
+                    
                 }
+                
             }
         }
     }
