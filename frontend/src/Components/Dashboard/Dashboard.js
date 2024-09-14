@@ -19,7 +19,7 @@ function Dashboard() {
     return (
         <DashboardStyled>
             <InnerLayout>
-                <h1>All Transactions</h1>
+                <h1 className='text-2xl font-extrabold'>All Transactions</h1>
                 <div className="stats-con">
                     <div className="amount-con">
                         <div className="income">

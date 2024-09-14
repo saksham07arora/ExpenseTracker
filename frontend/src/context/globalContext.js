@@ -12,6 +12,7 @@ export const GlobalProvider = ({children}) => {
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
     const [error, setError] = useState(null)
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     //calculate incomes
     const addIncome = async (income) => {
@@ -114,7 +115,9 @@ export const GlobalProvider = ({children}) => {
             transactionHistory,
             error,
             setError,
-            getCategoryTotals
+            getCategoryTotals,
+            isLoggedIn,
+            setIsLoggedIn,
         }}>
             {children}
         </GlobalContext.Provider>

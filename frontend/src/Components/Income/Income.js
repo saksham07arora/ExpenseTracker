@@ -14,7 +14,7 @@ function Income() {
     return (
         <IncomeStyled>
             <InnerLayout>
-                <h1>Incomes</h1>
+                <h1 className='text-2xl font-extrabold'>Incomes</h1>
                 <h2 className="total-income">Total Income: <span>₹{totalIncome()}</span></h2>
                 <div className="income-content">
                     <div className="form-container">

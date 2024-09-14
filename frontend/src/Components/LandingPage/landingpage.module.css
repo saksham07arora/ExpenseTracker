@@ -1,0 +1,6 @@
+.landing_bg{
+    background-image: url('../../img/background.jpg');
+    background-size: cover;
+    /* height: 100vh; */
+    margin: 0;
+} 
