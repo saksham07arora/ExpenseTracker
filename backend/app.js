@@ -38,7 +38,7 @@ const checkToken = async (req, res, next) => {
 
   try {
     const result = await cca.acquireTokenByClientCredential({
-      scopes: ['https://aiexpense.onmicrosoft.com/Expense/Read'], 
+    //   scopes: [''], 
     });
     
     next();
