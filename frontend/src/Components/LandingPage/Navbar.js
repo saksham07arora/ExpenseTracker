@@ -1,18 +1,18 @@
 // src/components/Newbar.js
-import React, { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { RiCloseLargeLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import Logo from "../../img/Logo.jpg";
-import { useAuth } from '../../context/authContext'; // Import the useAuth hook
+import React, { useState } from 'react';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { RiCloseLargeLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+import Logo from '../../img/Logo.jpg';
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../context/authConfigure'; // Import loginRequest
+import { useAuth } from './useAuth';
 
 const Newbar = () => {
+  const { isAuthenticated, login, logout, isLoggingIn } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { login, logout, isAuthenticated, accounts, isLoggingIn } = useAuth(); // Get authentication data from context
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <nav className="bg-white border-gray-200 py-3 dark:bg-gray-900 shadow-sm">
@@ -58,23 +58,19 @@ const Newbar = () => {
         {/* Login/Logout button */}
         <div className="space-x-2">
           {!isAuthenticated ? (
-            <button onClick={login} className="hidden lg:inline-block text-black font-medium hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg text-md px-5 py-2 hover:text-white" disabled={isLoggingIn}>
-              {isLoggingIn ? 'Logging in...' : 'Login with Azure AD B2C'}
+            <button onClick={login} disabled={isLoggingIn} className="hidden lg:inline-block text-black font-medium py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500">
+              {isLoggingIn ? 'Logging in...' : 'Login'}
             </button>
           ) : (
-            <>
-              <span className="hidden lg:inline-block text-white font-medium bg-purple-700 rounded-lg text-md px-5 py-2 dark:bg-purple-600">
-                Welcome, {accounts[0].username}
-              </span>
-              <button onClick={logout} className="hidden lg:inline-block text-black font-medium hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg text-md px-5 py-2 hover:text-white">
-                Logout
-              </button>
-            </>
+            <button onClick={logout} className="hidden lg:inline-block text-black font-medium py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500">
+              Logout
+            </button>
           )}
         </div>
       </div>
     </nav>
   );
 };
+
 
 export default Newbar;

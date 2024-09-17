@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@azure/msal-node": "^2.13.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "env": "^0.0.2",

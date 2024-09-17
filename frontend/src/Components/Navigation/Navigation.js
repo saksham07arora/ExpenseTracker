@@ -164,15 +164,18 @@ import { signout } from '../../utils/Icons';
 import { menuItems } from '../../utils/menuItems';
 import { useGlobalContext } from '../../context/globalContext';
 import { FaUserAlt } from "react-icons/fa";
+import { useAuth } from '../LandingPage/useAuth';
+import { useMsal } from '@azure/msal-react';
 
 function Navigation({ active, setActive }) {
-  const { setIsLoggedIn } = useGlobalContext();
+  // const { setIsLoggedIn } = useGlobalContext();
 
   // Logout handler
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
+  // const handleLogout = () => {
+  //   setIsLoggedIn(false);
+  // };
+  const { isAuthenticated, login, logout, isLoggingIn } = useAuth();
+  const { instance, accounts } = useMsal();
   return (
     <NavStyled>
       <div className="user-con">
@@ -180,7 +183,7 @@ function Navigation({ active, setActive }) {
         <span className='text-5xl border-4 border-gery-800 text-red-800 rounded-full'><FaUserAlt /> </span>
         <div className="text hide">
             {/* insert username of user */}
-          <h2 className='font-extrabold text-2xl'>User Name</h2>  
+          <h2 className='font-extrabold text-2xl'>{accounts[0].username}</h2>  
         </div>
       </div>
       <ul className="menu-items">
@@ -196,8 +199,10 @@ function Navigation({ active, setActive }) {
         ))}
       </ul>
       <div className="bottom-nav">
-        <li onClick={handleLogout}>
+        <li >
+        <button onClick={logout}>
           <span className="signout">{signout}</span> <span className="hide">Sign Out</span>
+          </button>
         </li>
       </div>
     </NavStyled>

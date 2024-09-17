@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import bg from './img/bg.png';
@@ -8,24 +7,18 @@ import Navigation from './Components/Navigation/Navigation';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Income from './Components/Income/Income';
 import Expenses from './Components/Expenses/Expenses';
-import { useAuth } from '../src/context/authContext' // Import the useAuth hook
 import FinancialRecords from './Components/Transaction/Transaction';
 import LandingPage from './Components/LandingPage/LandingPage';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import Login from '../src/Components/Credentials/Login';
-import SignUp from '../src/Components/Credentials/Signup';
+import Login from './Components/Credentials/Login';
+import SignUp from './Components/Credentials/Signup';
 import KnowledgeBaseQuery from './Components/Chaboat/chatboat';
-
-// Memoized Navigation component
-const MemoizedNavigation = React.memo(({ active, setActive }) => {
-  return <Navigation active={active} setActive={setActive} />;
-});
+import { useAuth } from '../src/Components/LandingPage/useAuth'
 
 function App() {
   const [active, setActive] = useState(1);
-  const { isLoggingIn } = useAuth(); // Get the isLoggingIn value from the context
+  const {isAuthenticated } = useAuth();
 
-  // Determine which component to display based on active state
   const displayComponent = useMemo(() => {
     switch (active) {
       case 1:
@@ -46,8 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* If the user is logging in, show the login/signup pages */}
-        {!isLoggingIn ? (
+        {!isAuthenticated ? (
           <>
             <Route path="/" element={<LandingPage />} />
             <Route path="/signUp" element={<SignUp />} />
@@ -55,14 +47,13 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </>
         ) : (
-          // If logged in, show the user dashboard and other protected routes
           <Route
             path="/user"
             element={
               <AppStyled bg={bg} className="App">
                 {orbMemo}
                 <MainLayout>
-                  <MemoizedNavigation active={active} setActive={setActive} />
+                  <Navigation active={active} setActive={setActive} />
                   <main>{displayComponent}</main>
                 </MainLayout>
                 <KnowledgeBaseWrapper>
@@ -72,7 +63,7 @@ function App() {
             }
           />
         )}
-        <Route path="*" element={<Navigate to={isLoggingIn ? '/user' : '/'} />} />
+        <Route path="*" element={<Navigate to={!isAuthenticated ? '/' : '/user'} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -14,6 +14,7 @@ function Dashboard() {
     useEffect(() => {
         getIncomes();
         getExpenses();
+        console.log("total expenses:",totalExpenses())
     }, []);
 
     return (
