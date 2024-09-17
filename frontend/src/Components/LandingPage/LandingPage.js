@@ -5,10 +5,12 @@ import { VscGraph } from "react-icons/vsc";
 import { TbTransactionRupee } from "react-icons/tb";
 import Footer from './Footer';
 import Navbar from './Navbar';
+import { useAuth } from './useAuth';
 // 
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
+    const { isAuthenticated, login, logout, isLoggingIn } = useAuth();
     return (
         <>
         <Navbar />
@@ -22,7 +24,9 @@ const LandingPage = () => {
                     Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
                     versions of Lorem Ipsum.
                 </p>
-                <Link to="/signup" className="hidden lg:inline-block text-white font-medium bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg text-md px-5 py-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"> Try Now </Link>
+                <button onClick={login}>
+                <Link className="hidden lg:inline-block text-white font-medium bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg text-md px-5 py-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"> Try Now </Link>
+                </button>
                 <img src={dashboardImage} className="my-[100px] max-h-[520px] px-5" alt="landing-img-1" />
             </div>
             <div className='flex flex-wrap justify-center items-center lg:w-[70%] md:w-[70%] m-auto'>
